@@ -10,15 +10,28 @@ import UIKit
 
 class ViewController: UIViewController {
     
-   weak var images: UIImageView = ["01.png", "02.png", "03.png"]
+    //画像データを文字列の配列で管理
+    var images = ["01.png", "02.png", "03.png"]
     
-    @IBOutlet weak var dispImage: UIImageView!
-    
+    @IBOutlet weak var myImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        dispImage = images[0]
+            
+        //myImageView = UIImageView(frame: CGRectMake(0, 0, 100, 120));
+        
+        //表示する画像を設定する
+        let myImage = UIImage(named: images[0])
+        
+        //画像をUIImageViewに設定する
+        myImageView.image = myImage
+        
+        //画像の位置を設定する
+        //myImageView.layer.position = CGPoint(x: self.view.bounds.width/2, y: 200.0)
+        
+        self.view.addSubview(myImageView)
+        
     }
 
     override func didReceiveMemoryWarning() {
