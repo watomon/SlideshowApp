@@ -64,52 +64,44 @@ class ViewController: UIViewController {
     //再生・停止を押した時の動作
     @IBAction func slidshoeImage(_ sender: Any) {
         
-        //押されるたびに加算する
-        self.state += 1
-        
         displayImage()
-        //奇数のとき、再生を表す。
-        if ((self.state) % 2) == 1 {
-            self.timer_sec = 0
-            
-            //タイマーの作成、移動
-            //動作中のタイマーを一つに保つために、timerが存在しない場合にのみ、タイマーを生成する。
-            if self.timer == nil {
-                self.timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector:
-                    #selector(updateTimer), userInfo: nil, repeats: true)
-                //毎2秒の時にスライドさせる。
-                if self.timer_sec >= 0.5 {
-                    self.imageNum += 1
-                    if self.imageNum > 2 {
-                        self.imageNum = 0
-                    }
-                    self.timer_sec = 0
-                }
-                
-            }
-            
-       }
+        self.timer_sec = 0
         
-        //進むボタンと戻るボタンを無効にする
-        preViewButton.isEnabled = false
-        nextViewButton.isEnabled = false
-        
-        //偶数ならば、タイマーをリセットしてボタンを有効にする
-        if ((self.state) % 2) == 0 {
-            self.timer_sec = 0
-            //リセット
-            if self.timer != nil {
-                self.timer.invalidate()
-                self.timer = nil
-            }
-            
+        //タイマーの作成、移動
+        //動作中のタイマーを一つに保つために、timerが存在しない場合にのみ、タイマーを生成する。
+        if self.timer == nil {
+            //ボタンを無効にする
             preViewButton.isEnabled = true
             nextViewButton.isEnabled = true
+            //タイマーの作成・起動
+            self.timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector:
+                #selector(updateTimer), userInfo: nil, repeats: true)
+            //2秒ごとにスライドさせる
+            if self.timer_sec >= 2 {
+                self.imageNum += 1
+                
+                if self.imageNum > 2 {
+                    self.imageNum = 0
+                }
+                displayImage()
+            }
         }
         
-        
+        //タイマーがnilでないならば、タイマーをリセットしてボタンを有効にする
+        if self.timer != nil {
+            //進むボタンと戻るボタンを無効にする
+            preViewButton.isEnabled = false
+            nextViewButton.isEnabled = false
+            
+            self.timer.invalidate()
+            self.timer = nil
+        }
+        //displayImage()
+        //self.timer = nil
     }
 
+
+    
     //画像を表示するメソッド
     func displayImage() {
         //画像データを文字列の配列で管理

@@ -48,6 +48,7 @@
                                 <state key="normal" title="再生/停止"/>
                                 <connections>
                                     <action selector="slidshoeImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="J2D-6C-DSA"/>
+                                    <action selector="stopSlideShow:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8p8-jK-4FU"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ayq-8Y-uae">
@@ -66,6 +67,7 @@
                         <outlet property="nextViewButton" destination="f9J-mn-fMG" id="FNH-ch-b6P"/>
                         <outlet property="preViewButton" destination="vAd-KM-A08" id="Fd1-Ch-D71"/>
                         <outlet property="slideShowButton" destination="lBh-rX-bpb" id="4aP-WH-6G6"/>
+                        <outlet property="stopSlideShow" destination="lBh-rX-bpb" id="3Q9-EY-9YW"/>
                         <outlet property="test" destination="ayq-8Y-uae" id="HNu-mS-fn6"/>
                     </connections>
                 </viewController>
